@@ -38,8 +38,11 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Spirit
+  - name: Light
     uniqueID: 3252677959
+    locked: 0
+  - name: Dark
+    uniqueID: 2721829345
     locked: 0
   - name: Default
     uniqueID: 0

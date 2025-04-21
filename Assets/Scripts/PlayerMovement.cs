@@ -3,10 +3,14 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [SerializeField]
+    private Boolean playerOne;
     [SerializeField] 
     private float speed;
     [SerializeField]
     private float slideFactor;
+
+    [SerializeField]
     private Rigidbody2D rb;
     private Vector2 targetVelocity;
 
@@ -14,7 +18,7 @@ public class PlayerMovement : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        this.rb = FindFirstObjectByType<Rigidbody2D>();
+        // nothing yet
     }
 
     private T FindObjectsByType<T>()
@@ -34,8 +38,20 @@ public class PlayerMovement : MonoBehaviour
 
     void ProcessInputs() 
     { 
-        float inputX = Input.GetAxisRaw("Horizontal");
-        float inputY = Input.GetAxisRaw("Vertical");
+        float inputX = 0f;
+        float inputY = 0f;
+
+        if (playerOne) {
+            if (Input.GetKey(KeyCode.W)) inputY = 1f;
+            if (Input.GetKey(KeyCode.S)) inputY = -1f;
+            if (Input.GetKey(KeyCode.A)) inputX = -1f;
+            if (Input.GetKey(KeyCode.D)) inputX = 1f;
+        } else {
+            if (Input.GetKey(KeyCode.UpArrow)) inputY = 1f;
+            if (Input.GetKey(KeyCode.DownArrow)) inputY = -1f;
+            if (Input.GetKey(KeyCode.LeftArrow)) inputX = -1f;
+            if (Input.GetKey(KeyCode.RightArrow)) inputX = 1f;
+        }
 
         // handles player flipping when facing left or right 
         if (inputX > 0) {
