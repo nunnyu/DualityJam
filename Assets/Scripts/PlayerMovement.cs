@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Animations;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private Rigidbody2D rb;
     private Vector2 targetVelocity;
+    private Vector2 lastInput;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -59,8 +61,10 @@ public class PlayerMovement : MonoBehaviour
         } else if (inputX < 0) {
             Flip(false);
         } // we don't want to do else false because then the player always faces left
- 
-        Vector2 targetVector = new Vector2(inputX, inputY).normalized;
+
+        lastInput = new Vector2(inputX, inputY);
+
+        Vector2 targetVector = lastInput.normalized;
         targetVelocity = speed * targetVector;
 
         this.rb.linearVelocity = Vector2.Lerp(rb.linearVelocity, targetVelocity, slideFactor);
@@ -75,5 +79,10 @@ public class PlayerMovement : MonoBehaviour
         }
 
         transform.localScale = scale;
+    }
+
+    public Vector2 getLastInput() 
+    {
+        return lastInput;
     }
 }

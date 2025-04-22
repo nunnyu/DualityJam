@@ -98,4 +98,8 @@ public class Health : MonoBehaviour
             }
         }
     }
+
+    float getHealth() {
+        return currentHealth;
+    }
 }
