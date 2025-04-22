@@ -18,7 +18,7 @@ public class PlayerMovement : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        // nothing yet
+        rb.freezeRotation = true;
     }
 
     private T FindObjectsByType<T>()
@@ -46,11 +46,11 @@ public class PlayerMovement : MonoBehaviour
             if (Input.GetKey(KeyCode.S)) inputY = -1f;
             if (Input.GetKey(KeyCode.A)) inputX = -1f;
             if (Input.GetKey(KeyCode.D)) inputX = 1f;
-        } else {
-            if (Input.GetKey(KeyCode.UpArrow)) inputY = 1f;
-            if (Input.GetKey(KeyCode.DownArrow)) inputY = -1f;
-            if (Input.GetKey(KeyCode.LeftArrow)) inputX = -1f;
-            if (Input.GetKey(KeyCode.RightArrow)) inputX = 1f;
+        } else { // 2nd control scheme is OKL;
+            if (Input.GetKey(KeyCode.O)) inputY = 1f;
+            if (Input.GetKey(KeyCode.L)) inputY = -1f;
+            if (Input.GetKey(KeyCode.K)) inputX = -1f;
+            if (Input.GetKey(KeyCode.Semicolon)) inputX = 1f;
         }
 
         // handles player flipping when facing left or right 

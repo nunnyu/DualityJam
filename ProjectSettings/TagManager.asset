@@ -3,7 +3,9 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
-  tags: []
+  tags:
+  - DarkGround
+  - LightGround
   layers:
   - Default
   - TransparentFX
@@ -38,14 +40,20 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Light
-    uniqueID: 3252677959
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: DarkMap
+    uniqueID: 2732731315
+    locked: 0
+  - name: LightMap
+    uniqueID: 1892088017
     locked: 0
   - name: Dark
     uniqueID: 2721829345
     locked: 0
-  - name: Default
-    uniqueID: 0
+  - name: Light
+    uniqueID: 3252677959
     locked: 0
   m_RenderingLayers:
   - Default
