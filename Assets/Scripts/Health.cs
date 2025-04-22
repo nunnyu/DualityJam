@@ -99,7 +99,7 @@ public class Health : MonoBehaviour
         }
     }
 
-    float getHealth() {
+    public float getHealth() {
         return currentHealth;
     }
 }

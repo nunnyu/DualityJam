@@ -8,16 +8,21 @@ public class Attack : MonoBehaviour
     [SerializeField] private Boolean isLumine;
     [SerializeField] private PlayerMovement movementScript;
     [SerializeField] private Health healthScript;
+    [SerializeField] private float damage;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
+        // stuff
     }
 
     // Update is called once per frame
     void Update()
     {
+        // SIZE & DAMAGE HANDLER
+        // todo
+
+        // DIRECTION & ANGLE HANDLER
         Vector2 moveDir = movementScript.getLastInput();
 
         if (moveDir != Vector2.zero) {

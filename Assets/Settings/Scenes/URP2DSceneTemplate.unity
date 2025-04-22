@@ -1745,6 +1745,7 @@ MonoBehaviour:
   isLumine: 1
   movementScript: {fileID: 694286382}
   healthScript: {fileID: 694286384}
+  damage: 4
 --- !u!1 &1205745277
 GameObject:
   m_ObjectHideFlags: 0
@@ -3020,6 +3021,7 @@ MonoBehaviour:
   isLumine: 0
   movementScript: {fileID: 1205745279}
   healthScript: {fileID: 1205745284}
+  damage: 4
 --- !u!1 &1801684041
 GameObject:
   m_ObjectHideFlags: 0
