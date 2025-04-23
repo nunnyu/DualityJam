@@ -30,76 +30,135 @@ public class Health : MonoBehaviour
 
         // DAMAGE HANDLER 
         updateHealth();
+    }
 
-        // DEATH HANDLER
-        if (CheckDead()) {
-            Debug.Log("someone died!");
-            // return to main menu or something 
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.blue;
+
+        // Trigger area gizmo
+        Gizmos.DrawWireSphere(transform.position, .2f);
+    }
+
+    void OnTriggerStay2D(Collider2D other)
+    {
+        if (isLumine)
+        {
+            if (other.CompareTag("DarkGround"))
+            {
+                inDanger = true;
+            }
+            else if (other.CompareTag("LightGround"))
+            {
+                inDanger = false;
+            }
+        }
+        else
+        {
+            if (other.CompareTag("LightGround"))
+            {
+                inDanger = true;
+            }
+            else if (other.CompareTag("DarkGround"))
+            {
+                inDanger = false;
+            }
         }
     }
 
-    void OnTriggerEnter2D(UnityEngine.Collider2D collision) {
-        if (isLumine) {
-            if (collision.tag.Equals("DarkGround")) {
-                inDanger = true;
-            } else {
-                inDanger = false;
-            }
-        } else {
-            if (collision.tag.Equals("LightGround")) {
-                inDanger = true;
-            } else {
-                inDanger = false;
-            }
-        }
-    }
-    
-    Boolean CheckDead() {
+    Boolean CheckDead()
+    {
         // if lumine is too dark, they die 
         // umbra does the opposite 
-        if (isLumine) {
-            if (currentHealth <= 0) {
+        if (isLumine)
+        {
+            if (currentHealth <= 0)
+            {
                 return true;
-            }  else {
+            }
+            else
+            {
                 return false;
             }
-        } else { // if umbra 
-            if (currentHealth >= maxBrightness) {
+        }
+        else
+        { // if umbra 
+            if (currentHealth >= maxBrightness)
+            {
                 return true;
-            } else {
+            }
+            else
+            {
                 return false;
             }
-        } 
+        }
     }
 
     // heals or does damage based on territory 
-    void updateHealth() {
-        if (this.CheckDead()) {
+    void updateHealth()
+    {
+        if (this.CheckDead())
+        {
+            ManageAudio audioManager = FindFirstObjectByType<ManageAudio>();
+            if (isLumine) audioManager.Play("Lumine Death");
+            else audioManager.Play("Umbra Death");
             Destroy(gameObject);
         }
 
         // lumine goes into the darkness to get stronger, but loses brightness 
         // umbra does the opposite 
-        if (inDanger){
-            if (isLumine) {
+        if (inDanger)
+        {
+            if (isLumine)
+            {
                 currentHealth -= damageTakenValue;
-            } else {
+            }
+            else
+            {
                 currentHealth += damageTakenValue;
             }
-        } else {
-            if (isLumine) { // if lumine
-                if (currentHealth < startHealth) {
+        }
+        else
+        {
+            if (isLumine)
+            { // if lumine
+                if (currentHealth < startHealth)
+                {
                     currentHealth += damageTakenValue / 2;
                 }
-            } else { // if umbra
-                if (currentHealth > 0) {
+            }
+            else
+            { // if umbra
+                if (currentHealth > 0)
+                {
                     currentHealth -= damageTakenValue / 2;
                 }
             }
         }
     }
 
-    public float getHealth() {
+    // Gets the current (inverse) ratio of health, with 1 being dead
+    // We want death to be the larger number, because we want them to be more powerful
+    // With low health.  
+    public float GetHealthRatio()
+    {
+        float ratio;
+        if (isLumine)
+        {
+            ratio = 1 - currentHealth / startHealth;
+            // Debug.Log("Lumine: " + ratio); 
+        }
+        else
+        {
+            ratio = currentHealth / maxBrightness;
+            // Debug.Log("Umbra: " + ratio);
+        }
+
+        return ratio;
+    }
+
+    public float getHealth()
+    {
         return currentHealth;
     }
 }

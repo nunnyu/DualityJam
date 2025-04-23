@@ -29,12 +29,14 @@ public class PlayerMovement : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update() {
+    void Update() 
+    {
         ProcessInputs();
     }
 
     // For Physics! 
-    void FixedUpdate() {
+    void FixedUpdate() 
+    {
         this.rb.linearVelocity = Vector2.Lerp(rb.linearVelocity, targetVelocity, slideFactor);
     }
 
@@ -43,12 +45,15 @@ public class PlayerMovement : MonoBehaviour
         float inputX = 0f;
         float inputY = 0f;
 
-        if (playerOne) {
+        if (playerOne) 
+        {
             if (Input.GetKey(KeyCode.W)) inputY = 1f;
             if (Input.GetKey(KeyCode.S)) inputY = -1f;
             if (Input.GetKey(KeyCode.A)) inputX = -1f;
             if (Input.GetKey(KeyCode.D)) inputX = 1f;
-        } else { // 2nd control scheme is OKL;
+        } 
+        else
+        { // 2nd control scheme is OKL;
             if (Input.GetKey(KeyCode.UpArrow)) inputY = 1f;
             if (Input.GetKey(KeyCode.DownArrow)) inputY = -1f;
             if (Input.GetKey(KeyCode.LeftArrow)) inputX = -1f;
@@ -56,11 +61,14 @@ public class PlayerMovement : MonoBehaviour
         }
 
         // handles player flipping when facing left or right 
-        if (inputX > 0) {
+        if (inputX > 0) 
+        {
             Flip(true);
-        } else if (inputX < 0) {
+        } 
+        else if (inputX < 0) 
+        { // we don't want to do else false because then the player always faces left
             Flip(false);
-        } // we don't want to do else false because then the player always faces left
+        } 
 
         lastInput = new Vector2(inputX, inputY);
 
@@ -70,11 +78,15 @@ public class PlayerMovement : MonoBehaviour
         this.rb.linearVelocity = Vector2.Lerp(rb.linearVelocity, targetVelocity, slideFactor);
     }
 
-    void Flip(Boolean facingRight) {
+    void Flip(Boolean facingRight) 
+    {
         Vector3 scale = transform.localScale;
-        if (facingRight) {
+        if (facingRight) 
+        {
             scale.x = 1;
-        } else {
+        }
+        else
+        {
             scale.x = -1;
         }
 
