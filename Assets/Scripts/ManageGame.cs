@@ -25,10 +25,15 @@ public class ManageGame : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
         resetEnds();
+    }
 
-
-        // TODO: REMOVE THIS IS TEMPORARY 
-        FindFirstObjectByType<ManageAudio>().PlayLoop("Theme");
+    void Update() 
+    {
+        if (lumend && umbrend) 
+        {
+            resetEnds();
+            LoadNextLevel();
+        }
     }
 
     public void LoadNextLevel()
