@@ -17,7 +17,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - Stuff
   - 
   - 
   - 
@@ -54,6 +54,9 @@ TagManager:
     locked: 0
   - name: Light
     uniqueID: 3252677959
+    locked: 0
+  - name: Colliders
+    uniqueID: 677000893
     locked: 0
   m_RenderingLayers:
   - Default
