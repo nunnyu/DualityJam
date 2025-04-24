@@ -36,7 +36,7 @@ public class Attack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("Current damage: " + damage);
+        // Debug.Log("Current damage: " + damage);
 
         // SIZE & DAMAGE HANDLER
         this.transform.localScale = ogAttackScale * this.GetValueFromRatio(healthScript.GetHealthRatio());

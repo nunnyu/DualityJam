@@ -8,9 +8,11 @@ public class Health : MonoBehaviour
     [SerializeField] private float startHealth;
     [SerializeField] private Boolean isLumine;
     [SerializeField] private float damageTakenValue;
+    [SerializeField] private LayerMask groundLayer;
     private float currentHealth;
     private float maxBrightness = 56f;
     private Boolean inDanger; // if in the danger zone (light / dark), take damage during this boolean
+    
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -22,12 +24,16 @@ public class Health : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(inDanger);
+        // Debug.Log(inDanger);
+        RaycastCheckZone();
 
         // VISUAL HANDLER
         float intensity = currentHealth;
         globalLight.intensity = intensity; // updates the lighting level based on health
+    }
 
+    void FixedUpdate()
+    {
         // DAMAGE HANDLER 
         updateHealth();
     }
@@ -40,32 +46,26 @@ public class Health : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, .2f);
     }
 
-    void OnTriggerStay2D(Collider2D other)
+    void RaycastCheckZone()
     {
-        if (isLumine)
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 0.2f, groundLayer);
+        if (hit.collider != null)
         {
-            if (other.CompareTag("DarkGround"))
+            if (isLumine)
             {
-                inDanger = true;
+                inDanger = hit.collider.CompareTag("DarkGround");
             }
-            else if (other.CompareTag("LightGround"))
+            else
             {
-                inDanger = false;
+                inDanger = hit.collider.CompareTag("LightGround");
             }
         }
         else
         {
-            if (other.CompareTag("LightGround"))
-            {
-                inDanger = true;
-            }
-            else if (other.CompareTag("DarkGround"))
-            {
-                inDanger = false;
-            }
+            inDanger = false; // not standing on anything detectable
         }
     }
-
+    
     Boolean CheckDead()
     {
         // if lumine is too dark, they die 
@@ -111,10 +111,12 @@ public class Health : MonoBehaviour
         {
             if (isLumine)
             {
+                Debug.Log("Lumine is taking damage.");
                 currentHealth -= damageTakenValue;
             }
             else
             {
+                // Debug.Log("Umbra is taking damage.");
                 currentHealth += damageTakenValue;
             }
         }
@@ -124,6 +126,7 @@ public class Health : MonoBehaviour
             { // if lumine
                 if (currentHealth < startHealth)
                 {
+                    Debug.Log("Lumine is healing.");
                     currentHealth += damageTakenValue / 2;
                 }
             }
@@ -131,6 +134,7 @@ public class Health : MonoBehaviour
             { // if umbra
                 if (currentHealth > 0)
                 {
+                    // Debug.Log("Umbra is healing.");
                     currentHealth -= damageTakenValue / 2;
                 }
             }
