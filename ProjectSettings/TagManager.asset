@@ -6,6 +6,8 @@ TagManager:
   tags:
   - DarkGround
   - LightGround
+  - Lumine
+  - Umbra
   layers:
   - Default
   - TransparentFX
