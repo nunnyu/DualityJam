@@ -5,10 +5,19 @@ using System;
 
 public class ManageAudio : MonoBehaviour
 {
+    public static ManageAudio Instance { get; private set; }
     public Sound[] sounds;
 
     void Awake()
     {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject); // ensures there's only one 
+            return;
+        }
+
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
         foreach (Sound s in sounds)
         {
             s.source = gameObject.AddComponent<AudioSource>();

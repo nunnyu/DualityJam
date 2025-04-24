@@ -782,19 +782,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sounds:
   - name: Theme
-    clip: {fileID: 0}
-    volume: 0
-    pitch: 0
+    clip: {fileID: 8300000, guid: 0cb0e710e319d9045b816ffbcf77ffee, type: 3}
+    volume: 0.5
+    pitch: 1
     source: {fileID: 0}
   - name: Lumine Death
     clip: {fileID: 8300000, guid: c889ee1eeeb71f34e8474a8b0ba92cf4, type: 3}
-    volume: 0.62
+    volume: 0.4
     pitch: 2.6
     source: {fileID: 0}
   - name: Umbra Death
     clip: {fileID: 8300000, guid: c889ee1eeeb71f34e8474a8b0ba92cf4, type: 3}
-    volume: 0.62
+    volume: 0.4
     pitch: 2.2
+    source: {fileID: 0}
+  - name: End
+    clip: {fileID: 8300000, guid: bb56284f8f60718448f2b340ca8deac8, type: 3}
+    volume: 0.25
+    pitch: 2
+    source: {fileID: 0}
+  - name: Key
+    clip: {fileID: 8300000, guid: fe28c903f41e0514fbaf11b490135672, type: 3}
+    volume: 1
+    pitch: 1
     source: {fileID: 0}
 --- !u!4 &346004668
 Transform:
@@ -805,11 +815,11 @@ Transform:
   m_GameObject: {fileID: 346004666}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5.64, y: 0.13954665, z: 10}
+  m_LocalPosition: {x: -5.970722, y: 0.13394547, z: 0.70142835}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 519420032}
+  m_Father: {fileID: 578770771}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &504274057
 GameObject:
@@ -1725,7 +1735,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 346004668}
   - {fileID: 619394802}
   - {fileID: 1155527127}
   m_Father: {fileID: 0}
@@ -1759,7 +1768,8 @@ Transform:
   m_LocalPosition: {x: 0.33072236, y: 0.0056011826, z: -0.70142835}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 346004668}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &578770772

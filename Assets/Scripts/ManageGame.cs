@@ -25,6 +25,10 @@ public class ManageGame : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
         resetEnds();
+
+
+        // TODO: REMOVE THIS IS TEMPORARY 
+        FindFirstObjectByType<ManageAudio>().PlayLoop("Theme");
     }
 
     public void LoadNextLevel()
@@ -32,6 +36,11 @@ public class ManageGame : MonoBehaviour
         currentLevel++;
         SceneManager.LoadScene("Level" + currentLevel);
         resetEnds();
+
+        if (currentLevel == 0) 
+        {
+            FindFirstObjectByType<ManageAudio>().PlayLoop("Theme");
+        }
     }
 
     public void RestartLevel()

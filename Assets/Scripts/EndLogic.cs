@@ -18,11 +18,13 @@ public class EndLogic : MonoBehaviour
         if (forLumine && collision.tag.Equals("Lumine") && manageGame.lumineKey) 
         {
             manageGame.lumend = true;
+            FindFirstObjectByType<ManageAudio>().Play("End");
             Destroy(gameObject);
         } 
         else if (!forLumine && collision.tag.Equals("Umbra") && manageGame.umbraKey) 
         {
             manageGame.umbrend = true;
+            FindFirstObjectByType<ManageAudio>().Play("End");
             Destroy(gameObject);
         }
     }

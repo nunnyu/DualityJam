@@ -31,11 +31,13 @@ public class KeyLogic : MonoBehaviour
         if (collision.tag.Equals("Lumine")) 
         {
             manageGame.lumineKey = true;
+            FindFirstObjectByType<ManageAudio>().Play("Key");
             Destroy(gameObject);
         } 
         else if (collision.tag.Equals("Umbra")) 
         {
             manageGame.umbraKey = true;
+            FindFirstObjectByType<ManageAudio>().Play("Key");
             Destroy(gameObject);
         }
     }
