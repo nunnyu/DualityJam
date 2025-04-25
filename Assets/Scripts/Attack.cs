@@ -48,6 +48,7 @@ public class Attack : MonoBehaviour
         if (moveDir != Vector2.zero)
         {
             GetComponent<SpriteRenderer>().enabled = true; // make the "attack" visible
+            GetComponent<CircleCollider2D>().enabled = true;
 
             float angle = Mathf.Atan2(moveDir.y, moveDir.x) * Mathf.Rad2Deg; // finds the angle the player is moving
             transform.rotation = Quaternion.Euler(0, 0, angle - 90f);
@@ -55,6 +56,7 @@ public class Attack : MonoBehaviour
         else
         {
             GetComponent<SpriteRenderer>().enabled = false; // no attack happens
+            GetComponent<CircleCollider2D>().enabled = false;
         }
 
         float distanceFromPlayer = 1f;

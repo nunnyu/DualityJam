@@ -8,6 +8,9 @@ TagManager:
   - LightGround
   - Lumine
   - Umbra
+  - Enemy
+  - Attack
+  - DarkAttack
   layers:
   - Default
   - TransparentFX
@@ -17,8 +20,8 @@ TagManager:
   - UI
   - Ground
   - 
-  - 
-  - 
+  - DarkEnemies
+  - LightEnemies
   - Stuff
   - 
   - 
@@ -57,8 +60,20 @@ TagManager:
   - name: Light
     uniqueID: 3252677959
     locked: 0
+  - name: DarkEnemies
+    uniqueID: 3777127933
+    locked: 0
+  - name: LightEnemies
+    uniqueID: 3455109711
+    locked: 0
   - name: Colliders
     uniqueID: 677000893
+    locked: 0
+  - name: LightAttack
+    uniqueID: 3625341283
+    locked: 0
+  - name: DarkAttack
+    uniqueID: 1461450909
     locked: 0
   m_RenderingLayers:
   - Default

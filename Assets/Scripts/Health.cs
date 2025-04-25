@@ -96,16 +96,21 @@ public class Health : MonoBehaviour
         }
     }
 
+    public void Die() 
+    {
+        ManageAudio audioManager = FindFirstObjectByType<ManageAudio>();
+        if (isLumine)audioManager.Play("Lumine Death");
+        else audioManager.Play("Umbra Death");
+        manageGame.deadCount++;
+        Destroy(gameObject);
+    }
+
     // heals or does damage based on territory 
     void updateHealth()
     {
         if (this.CheckDead())
         {
-            ManageAudio audioManager = FindFirstObjectByType<ManageAudio>();
-            if (isLumine)audioManager.Play("Lumine Death");
-            else audioManager.Play("Umbra Death");
-            manageGame.deadCount++;
-            Destroy(gameObject);
+            Die();
         }
 
         // lumine goes into the darkness to get stronger, but loses brightness 

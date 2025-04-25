@@ -184,6 +184,11 @@ MonoBehaviour:
     volume: 0.5
     pitch: 1
     source: {fileID: 0}
+  - name: Fish
+    clip: {fileID: 8300000, guid: e5c04a1f1351fba44969a246dc7e4522, type: 3}
+    volume: 0.9
+    pitch: 0.9
+    source: {fileID: 0}
 --- !u!4 &346004668
 Transform:
   m_ObjectHideFlags: 0
