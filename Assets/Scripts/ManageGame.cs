@@ -47,7 +47,8 @@ public class ManageGame : MonoBehaviour
             }
         }
         // reset level is space is pressed
-        if (!inMenu && Input.GetKeyDown(KeyCode.Space) || deadCount == 2)
+        // also level 6 is the end screen so we disable it there as well
+        if (!inMenu && currentLevel != 6 && Input.GetKeyDown(KeyCode.Space) || deadCount == 2)
         {
             RestartLevel();
         }
@@ -65,6 +66,12 @@ public class ManageGame : MonoBehaviour
         currentLevel++;
         SceneManager.LoadScene("Level" + currentLevel);
         ResetEnds();
+
+        if (currentLevel == 6) 
+        {
+            FindFirstObjectByType<ManageAudio>().Stop("Theme");
+            FindFirstObjectByType<ManageAudio>().PlayLoop("Title");
+        }
     }
 
     public void RestartLevel()

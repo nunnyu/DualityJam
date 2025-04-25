@@ -175,7 +175,7 @@ PrefabInstance:
       objectReference: {fileID: 694286384}
     - target: {fileID: 3982663496111805369, guid: 10bd2a36bbee2f64e9bbed50d7c416f7, type: 3}
       propertyPath: swimSpeed
-      value: 3
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3982663496111805369, guid: 10bd2a36bbee2f64e9bbed50d7c416f7, type: 3}
       propertyPath: swimDistance

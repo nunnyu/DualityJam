@@ -4275,7 +4275,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeBar: {fileID: 1402597663}
-  levelTime: 25
+  levelTime: 22.5
 --- !u!114 &1402597663
 MonoBehaviour:
   m_ObjectHideFlags: 0
