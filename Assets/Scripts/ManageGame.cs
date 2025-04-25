@@ -41,8 +41,9 @@ public class ManageGame : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space)) 
             {
                 FindFirstObjectByType<ManageAudio>().Stop("Title");
-                LoadNextLevel();
                 inMenu = false;
+                FindFirstObjectByType<ManageAudio>().PlayLoop("Theme");
+                SceneManager.LoadScene("Level0");
             }
         }
         // reset level is space is pressed
@@ -60,14 +61,10 @@ public class ManageGame : MonoBehaviour
 
     public void LoadNextLevel()
     {
+        // Debug.Log("loading next level");
         currentLevel++;
         SceneManager.LoadScene("Level" + currentLevel);
         ResetEnds();
-
-        if (currentLevel == 0) 
-        {
-            FindFirstObjectByType<ManageAudio>().PlayLoop("Theme");
-        }
     }
 
     public void RestartLevel()
