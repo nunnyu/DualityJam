@@ -10,8 +10,9 @@ public class ManageGame : MonoBehaviour
     [HideInInspector] public Boolean umbrend { get; set; }
     [HideInInspector] public Boolean lumineKey { get; set; }
     [HideInInspector] public Boolean umbraKey { get; set; }
-
-    public int currentLevel = 0;
+    [HideInInspector] public int deadCount { get; set; }
+    private Boolean inMenu = false;
+    [HideInInspector] public int currentLevel = -1;
 
     void Awake() 
     {
@@ -24,14 +25,35 @@ public class ManageGame : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
 
-        resetEnds();
+        ResetEnds();
+    }
+
+    void Start() 
+    {
+        FindFirstObjectByType<ManageAudio>().Play("Title");
+        inMenu = true;
     }
 
     void Update() 
     {
-        if (lumend && umbrend) 
+        if (inMenu) 
         {
-            resetEnds();
+            if (Input.GetKeyDown(KeyCode.Space)) 
+            {
+                FindFirstObjectByType<ManageAudio>().Stop("Title");
+                LoadNextLevel();
+                inMenu = false;
+            }
+        }
+        // reset level is space is pressed
+        if (!inMenu && Input.GetKeyDown(KeyCode.Space) || deadCount == 2)
+        {
+            RestartLevel();
+        }
+
+        if (!inMenu && lumend && umbrend) 
+        {
+            ResetEnds();
             LoadNextLevel();
         }
     }
@@ -40,7 +62,7 @@ public class ManageGame : MonoBehaviour
     {
         currentLevel++;
         SceneManager.LoadScene("Level" + currentLevel);
-        resetEnds();
+        ResetEnds();
 
         if (currentLevel == 0) 
         {
@@ -51,13 +73,15 @@ public class ManageGame : MonoBehaviour
     public void RestartLevel()
     {
         SceneManager.LoadScene("Level" + currentLevel);
-        resetEnds();
+        FindFirstObjectByType<ManageAudio>().Play("Reset");
+        ResetEnds();
     }
 
-    private void resetEnds() {
+    private void ResetEnds() {
         lumend = false;
         umbrend = false;
         lumineKey = false;
         umbraKey = false;
+        deadCount = 0;
     }
 }

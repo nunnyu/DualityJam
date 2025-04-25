@@ -12,11 +12,13 @@ public class Health : MonoBehaviour
     private float currentHealth;
     private float maxBrightness = 56f;
     private Boolean inDanger; // if in the danger zone (light / dark), take damage during this boolean
+    private ManageGame manageGame;
     
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        manageGame = FindFirstObjectByType<ManageGame>();
         this.inDanger = false;
         this.currentHealth = startHealth;
     }
@@ -100,8 +102,9 @@ public class Health : MonoBehaviour
         if (this.CheckDead())
         {
             ManageAudio audioManager = FindFirstObjectByType<ManageAudio>();
-            if (isLumine) audioManager.Play("Lumine Death");
+            if (isLumine)audioManager.Play("Lumine Death");
             else audioManager.Play("Umbra Death");
+            manageGame.deadCount++;
             Destroy(gameObject);
         }
 
